@@ -51,9 +51,12 @@ You can learn more about the syntax in the [documentation](https://www.npmjs.com
 ## Installation:
 
 1. Open up terminal and navigate to the theme, plugin, or proper folder.
-2. Then type: `git clone https://github.com/KnowTheCode/UpGulp.git .`
-3. Type `npm install`.  It will automatically install all of the modules specified in the `package.json` file.
-4. Change the configuration parameters in the variable `moduleSettings` as found in `config/gulp/config.js`. You will want to change:
+2. Then type: `git clone https://github.com/KnowTheCode/UpGulp.git`.  The repository is loaded into a new subfolder called UpGulp.
+3. Now it's time to move the contents of `UpGulp` folder into the root of your plugin or theme.
+    - Move `gulpfile.js`, `package.json`, `config/gulp`, and `assets/gulp`
+    - Move these resources into the root of your theme or plugin
+4. Type `npm install`.  It will automatically install all of the modules specified in the `package.json` file.
+5. Change the configuration parameters in the variable `moduleSettings` as found in `config/gulp/config.js`. You will want to change:
     - `moduleSettings.package` -> change to the package's name
     - `moduleSettings.domain` -> change to the domain name
     - `moduleSettings.isTheme` -> If this is a theme, then set it to `true`.
@@ -77,3 +80,10 @@ This gulp setup is inspired by [WebDev Studio's setup](https://github.com/WebDev
 ## Contributions
 
 All feedback, bug reports, and pull requests are welcome.
+
+## TODOs
+
+There are things we need to improve and test in this starter module including:
+
+- Automate the installation process
+- Test sprites and translations
