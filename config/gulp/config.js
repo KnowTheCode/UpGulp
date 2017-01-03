@@ -2,7 +2,7 @@
  * UpGulp - Gulp tasks runtime configuration script
  *
  * @package     UpGulp
- * @since       1.0.0
+ * @since       1.0.1
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
@@ -102,6 +102,10 @@ module.exports = function ( moduleRoot ) {
 		scripts: distDir + 'js/'
 	};
 
+	var distFilenames = {
+		concatScripts: 'jquery.project.js'
+	};
+
 	/************************************
 	 * Theme Settings
 	 ***********************************/
@@ -140,7 +144,7 @@ module.exports = function ( moduleRoot ) {
 		concat: {
 			src: paths.concatScripts,
 			dest: distDirs.scripts,
-			concatSrc: 'recolorer-module.js',
+			concatSrc: distFilenames.concatScripts,
 		},
 		uglify: {
 			src: distDirs.scripts + '*.js',
