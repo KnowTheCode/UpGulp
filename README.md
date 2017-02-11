@@ -51,7 +51,7 @@ You can learn more about the syntax in the [documentation](https://www.npmjs.com
 ## Installation:
 
 1. Open up terminal and navigate to the theme, plugin, or proper folder.
-2. Then type: `git clone https://github.com/KnowTheCode/UpGulp.git`.  The repository is loaded into a new subfolder called UpGulp.
+2. Then type: `git clone https://github.com/UpTechLabs/UpGulp.git`.  The repository is loaded into a new subfolder called UpGulp.
 3. Now it's time to move the contents of `UpGulp` folder into the root of your plugin or theme.
     - Move `gulpfile.js`, `package.json`, `config/gulp`, and `assets/gulp`
     - Move these resources into the root of your theme or plugin
