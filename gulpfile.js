@@ -2,10 +2,10 @@
  * gulfile.js - Entry point for launching KnowTheCodeGulp
  *
  * @package     UpGulp
- * @since       1.0.0
+ * @since       1.0.2
  * @author      hellofromTonya
- * @link        https://UpTechLabs.io
- * @license     GNU General Public License 2.0+
+ * @link        https://KnowTheCode.io
+ * @license     GPL-2.0+
  *
  * This gulpfile.js is a customized version of the wd_s from WebDevStudios
  * @link https://github.com/WebDevStudios/wd_s/blob/master/Gulpfile.js

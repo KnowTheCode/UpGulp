@@ -2,7 +2,7 @@
  * UpGulp - Gulp tasks runtime configuration script
  *
  * @package     UpGulp
- * @since       1.0.1
+ * @since       1.0.2
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
@@ -13,7 +13,9 @@ module.exports = function ( moduleRoot ) {
 	/************************************
 	 * Module Settings
 	 *
-	 * You need to change these settings to fit the project.
+	 * ACTION:
+	 * You need to change these settings
+	 * to fit your project.
 	 ***********************************/
 
 	var moduleSettings = {
@@ -131,7 +133,8 @@ module.exports = function ( moduleRoot ) {
 			dest: distDirs.css,
 		},
 		cssfinalize: {
-			run: false,
+			// Fix for Issue #1 - v1.0.3 11.July.2017
+			run: moduleSettings.isTheme ? true : false,
 			src: [ distDirs.css + "style.css", distDirs.css + "style.min.css" ],
 			dest: distDirs.finalCSS,
 		}

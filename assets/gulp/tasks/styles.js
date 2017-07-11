@@ -8,7 +8,7 @@
  *      4. Moves the style.css file from the Distribution location to the root of your theme
  *
  * @package     UpGulp
- * @since       1.0.0
+ * @since       1.0.3
  * @author      hellofromTonya
  * @link        https://KnowTheCode.io
  * @license     GNU-2.0+
@@ -43,27 +43,28 @@ module.exports = function ( gulp, plugins, config ) {
 	} );
 
 	gulp.task( 'styles-clean', function () {
-		var settings = config.styles.clean;
-
-		return cleanStyles( settings );
+		return cleanStyles( config.styles.clean );
 	} );
 
 	gulp.task( 'styles-build-sass', function () {
-		return buildSass();
+		return buildSass( config.styles.postcss );
 	} );
 
 	gulp.task( 'styles-minify', function () {
-		return minifyStyles();
+		return minifyStyles( config.styles.cssnano );
 	} );
 
 	gulp.task( 'styles-finalize', function () {
-		return stylesFinalize();
+		return stylesFinalize( config.styles.cssfinalize );
 	} );
 
 	gulp.task( 'styles-final-clean', function () {
 		var settings = config.styles.cssfinalize;
 
-		cleanStyles( settings );
+		// Fix for Issue #1 - v1.0.3 11.July.2017
+		if ( settings.run === true ) {
+			cleanStyles( settings );
+		}
 
 		plugins.notify( {
 			title: "Woot!, Task Done",
@@ -92,35 +93,31 @@ module.exports = function ( gulp, plugins, config ) {
 	/**
 	 * Compile Sass and run stylesheet through PostCSS.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.3
 	 *
+	 * @param settings
 	 * @returns {*}
 	 */
-	function buildSass() {
-		var settings = config.styles.postcss;
-
+	function buildSass( settings ) {
 		return gulp.src( settings.src )
 
-	           // Deal with errors.
-	           .pipe( plugins.plumber( {errorHandler: handleErrors} ) )
+	           .pipe( plugins.plumber( {
+		           errorHandler: handleErrors
+	           } ) )
 
-	           // Wrap tasks in a sourcemap.
 	           .pipe( plugins.sourcemaps.init() )
 
-	           // Compile Sass using LibSass.
 	           .pipe( plugins.sass( {
 		           includePaths: [].concat( bourbon, neat ),
 		           errLogToConsole: true,
 		           outputStyle: 'expanded' // Options: nested, expanded, compact, compressed
 	           } ) )
 
-	           // Parse with PostCSS plugins.
 	           .pipe( plugins.postcss( [
 		           plugins.autoprefixer( settings.autoprefixer ),
 		           mqpacker(),
 	           ] ) )
 
-	           // Create sourcemap.
 	           .pipe( plugins.sourcemaps.write() )
 
 	           // Create *.css.
@@ -133,12 +130,12 @@ module.exports = function ( gulp, plugins, config ) {
 	/**
 	 * Minify and optimize style.css.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.3
 	 *
+	 * @param settings {}
 	 * @returns {*}
 	 */
-	function minifyStyles() {
-		var settings = config.styles.cssnano;
+	function minifyStyles( settings ) {
 
 		return gulp.src( settings.src, function( cb ){
 				plugins.util.log( plugins.util.colors.bgGreen( 'styles are now minified and optimized....[minifyStyles()]' ) );
@@ -162,11 +159,11 @@ module.exports = function ( gulp, plugins, config ) {
 	 *
 	 * @since 1.0.0
 	 *
+	 * @param settings {}
+	 *
 	 * @returns {*}
 	 */
-	function stylesFinalize() {
-		var settings = config.styles.cssfinalize;
-
+	function stylesFinalize( settings ) {
 		return gulp.src( settings.src, function(){
 			    plugins.util.log( plugins.util.colors.bgGreen( 'Styles are all done....[cssfinalize()]' ) );
 		} )
