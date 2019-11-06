@@ -1,0 +1,11 @@
+{
+  "extends": "stylelint-config-wordpress",
+  "rules": {
+	"comment-empty-line-before": null,
+	"max-line-length": null,
+	"no-descending-specificity": null,
+	"no-duplicate-selectors": null,
+	"rule-empty-line-before": null,
+	"selector-list-comma-newline-after": null
+  }
+}
