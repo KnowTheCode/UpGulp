@@ -18,10 +18,27 @@ module.exports = {
 			formatter: 'verbose',
 			console: true
 		},
+		// Messages printed out to the console.
 		messages: {
-			sassToCss: '\n\n✅  ===> SASS, AUTOPREFIXER, SOURCEMAPS — completed!\n',
-			optimize: '\n\n✅  ===> OPTIMIZED STYLES — completed!\n',
-			lint: '\n\n✅  ===> LINT STYLES — completed!\n'
+			sassToCss: '\n\n✅ SASS, AUTOPREFIXER, SOURCEMAPS — completed!\n',
+			optimize: '\n\n✅ OPTIMIZED STYLES — completed!\n',
+			lint: '\n\n✅ LINT STYLES — completed!\n'
 		}
-	}
+	},
+
+	// JavaScript configurations.
+	scripts: {
+		src: devDir + 'assets/js/**/*.js',
+		min: rootDir + 'assets/js/*.min.js',
+		dest: rootDir + 'assets/js/',
+		// Set to true to combine scripts into one file.
+		// Set to false to generate individual min.js scripts.
+		combineScripts: true,
+		combinedScriptName: 'theme.min.js',
+		// Messages printed out to the console.
+		messages: {
+			lint: '\n\n✅ LINT SCRIPTS — completed!\n',
+			optimize: '\n\n✅ OPTIMIZED SCRIPTS — completed!\n'
+		}
+	},
 };
